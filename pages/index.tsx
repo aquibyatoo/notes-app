@@ -1,8 +1,8 @@
-import type { NextPage, NextPageContext } from "next";
+import type { NextPage, GetServerSideProps } from "next";
 import Head from "next/head";
 
-export async function getServerSideProps(context: any) {
-  const hasUserLoggedIn = context.req.cookies.isLoggedIn;
+export const getServerSideProps: GetServerSideProps = async ({ req }) => {
+  const hasUserLoggedIn = req.cookies.isLoggedIn;
 
   if (!hasUserLoggedIn) {
     return {
@@ -16,7 +16,7 @@ export async function getServerSideProps(context: any) {
   return {
     props: {},
   };
-}
+};
 
 const Home: NextPage = () => {
   return (
