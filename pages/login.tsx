@@ -1,13 +1,14 @@
-import type { NextPage, NextPageContext } from "next";
+import type { NextPage } from "next";
 import Head from "next/head";
+import Auth from "../src/features/auth";
 
 export async function getServerSideProps(context: any) {
   const hasUserLoggedIn = context.req.cookies.isLoggedIn;
 
-  if (!hasUserLoggedIn) {
+  if (hasUserLoggedIn) {
     return {
       redirect: {
-        destination: "/login",
+        destination: "/",
         permanent: false,
       },
     };
@@ -22,11 +23,10 @@ const Home: NextPage = () => {
   return (
     <>
       <Head>
-        <title>Notes</title>
+        <title>Login</title>
         <meta name="description" content="A simple notes app" />
       </Head>
-
-      <h1>Home</h1>
+      <Auth />
     </>
   );
 };
