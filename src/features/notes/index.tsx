@@ -1,13 +1,16 @@
 import { Grid } from "@mui/material";
 import * as React from "react";
 import { grey } from "@mui/material/colors";
-import Note from "./note";
-import AddNote from "./addNote";
+import Note from "./components/Note";
+import AddNote from "./components/AddNote";
 import { useSelector } from "react-redux";
 import { RootState } from "../../app/store";
+import EditNote from "./components/EditNote";
 
 const Notes = () => {
   const notes = useSelector((state: RootState) => state.notes.notes);
+  const editNote = useSelector((state: RootState) => state.notes.editNote);
+
   return (
     <Grid
       container
@@ -20,7 +23,7 @@ const Notes = () => {
         ))}
       </Grid>
       <Grid item xs={8}>
-        <AddNote />
+        {editNote ? <EditNote /> : <AddNote />}
       </Grid>
     </Grid>
   );

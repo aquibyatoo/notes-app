@@ -3,12 +3,12 @@ import { Note } from "../../../types";
 
 export interface NotesSlice {
   notes: Note[];
-  updateNote: Note | null;
+  editNote: Note | null;
 }
 
 const initialState: NotesSlice = {
   notes: [],
-  updateNote: null,
+  editNote: null,
 };
 
 export const notesSlice = createSlice({
@@ -19,7 +19,12 @@ export const notesSlice = createSlice({
       state.notes = [action.payload, ...state.notes];
     },
     updateNote: (state, action: PayloadAction<Note>) => {
-      state.updateNote = action.payload;
+      state.notes = state.notes.map((note) =>
+        note.id === action.payload.id ? action.payload : note
+      );
+    },
+    setEditNote: (state, action: PayloadAction<Note>) => {
+      state.editNote = action.payload;
     },
     deleteNote: (state, action: PayloadAction<Partial<Note>>) => {
       const updatedNotes = state.notes.filter(
@@ -27,12 +32,13 @@ export const notesSlice = createSlice({
       );
       state.notes = updatedNotes;
     },
-    reset: (state) => {
-      state.updateNote = null;
+    cancelEdit: (state) => {
+      state.editNote = null;
     },
   },
 });
 
-export const { addNote, updateNote, deleteNote, reset } = notesSlice.actions;
+export const { addNote, setEditNote, deleteNote, cancelEdit, updateNote } =
+  notesSlice.actions;
 
 export default notesSlice.reducer;
