@@ -55,7 +55,7 @@ const Note = ({ id, title, body }: Note) => {
         <Typography variant="body1" noWrap>
           {title}
         </Typography>
-        <Typography variant="body2" noWrap sx={{ height: "1rem" }}>
+        <Typography variant="body2" noWrap sx={{ minHeight: "1rem" }}>
           {body}
         </Typography>
       </Box>
