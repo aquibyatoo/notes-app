@@ -1,4 +1,4 @@
-import { Grid } from "@mui/material";
+import { Grid, Typography } from "@mui/material";
 import * as React from "react";
 import { grey } from "@mui/material/colors";
 import Note from "./components/Note";
@@ -8,8 +8,8 @@ import { RootState } from "../../app/store";
 import EditNote from "./components/EditNote";
 
 const Notes = () => {
-  const notes = useSelector((state: RootState) => state.notes.notes);
-  const editNote = useSelector((state: RootState) => state.notes.editNote);
+  const notes = useSelector((state: RootState) => state.myNotes.notes);
+  const editNote = useSelector((state: RootState) => state.myNotes.editNote);
 
   return (
     <Grid
@@ -18,7 +18,15 @@ const Notes = () => {
       sx={{ border: `1px solid ${grey[300]}`, minHeight: "90vh" }}
     >
       <Grid item xs={4} sx={{ borderRight: `1px solid ${grey[300]}` }}>
-        {notes.map((note) => (
+        {!notes.length && (
+          <Typography
+            variant="subtitle1"
+            sx={{ textAlign: "center", pt: "2rem" }}
+          >
+            Lets create some notes!
+          </Typography>
+        )}
+        {notes?.map((note) => (
           <Note key={note.id} {...note} />
         ))}
       </Grid>

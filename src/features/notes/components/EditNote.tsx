@@ -6,7 +6,7 @@ import { cancelEdit } from "../notesSlice";
 import { RootState } from "../../../app/store";
 
 const EditNote = () => {
-  const editNote = useSelector((state: RootState) => state.notes.editNote);
+  const editNote = useSelector((state: RootState) => state.myNotes.editNote);
   const dispatch = useDispatch();
 
   const handelCancel = () => dispatch(cancelEdit());

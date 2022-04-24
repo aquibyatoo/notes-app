@@ -20,7 +20,7 @@ type NoteFormType = {
 };
 
 const NoteForm = ({ onCancel, editNote }: NoteFormType) => {
-  const notes = useSelector((state: RootState) => state.notes.notes);
+  const notes = useSelector((state: RootState) => state.myNotes.notes);
   const [note, setNote] = React.useState<Note>(emptyNote);
   const [error, setError] = React.useState<boolean>(false);
 
@@ -36,7 +36,7 @@ const NoteForm = ({ onCancel, editNote }: NoteFormType) => {
     dispatch(
       addNote({
         ...note,
-        id: notes.length + 1,
+        id: notes?.length + 1,
       })
     );
   };
