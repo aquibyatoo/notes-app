@@ -2,6 +2,12 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## Getting Started
 
+### See live app [here](https://notes-app-delta.vercel.app/login)
+
+**Credentials**
+Username: **admin**
+Password: **admin**
+
 First, run the development server:
 
 ```bash
